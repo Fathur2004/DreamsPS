@@ -1,99 +1,463 @@
 <!DOCTYPE html>
-<html lang="en" manifest="CSSFontFace.manifest">
+<html lang="id" manifest="CSSFontFace.manifest">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSSFontFace exploit</title>
-  <link rel="stylesheet" href="includes/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 JB · Neubrutalism</title>
+    <link rel="stylesheet" href="includes/style.css">
+    <style>
+        /* ===== NEOBRUTALISM THEME ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f1e8;
+            font-family: 'Courier New', Courier, 'IBM Plex Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            margin: 0;
+        }
+
+        .card {
+            background: #fefdfa;
+            max-width: 580px;
+            width: 100%;
+            padding: 2.2rem 2rem 2rem;
+            border: 4px solid #0f0f0f;
+            box-shadow: 12px 12px 0 #0f0f0f;
+            border-radius: 0;
+            position: relative;
+        }
+
+        .card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: #0f0f0f;
+            border-bottom: 4px solid #0f0f0f;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            background: #fddc4b;
+            padding: 0.1rem 0.8rem 0.1rem 0.5rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            transform: rotate(-0.5deg);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f0f0f;
+            background: #d4e8ff;
+            padding: 0.3rem 0.8rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 4px 4px 0 #0f0f0f;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        hr {
+            border: 3px solid #0f0f0f;
+            margin: 1rem 0 1.5rem;
+        }
+
+        /* ===== SPONSOR ===== */
+        .sponsor-block {
+            margin-top: 1.5rem;
+            border: 4px solid #0f0f0f;
+            background: #fcf6e7;
+            box-shadow: 8px 8px 0 #0f0f0f;
+            padding: 1.2rem 1.2rem 1rem;
+        }
+
+        .sponsor-block .sponsor-label {
+            display: inline-block;
+            background: #0f0f0f;
+            color: #fefdfa;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.15rem 0.8rem;
+            border: 2px solid #0f0f0f;
+            margin-bottom: 0.6rem;
+            transform: rotate(-1deg);
+        }
+
+        .sponsor-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            width: 100%;
+        }
+
+        .sponsor-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border: 5px solid #0f0f0f;
+            box-shadow: 8px 8px 0 #0f0f0f;
+            display: block;
+            background: #ffffff;
+            padding: 0.3rem;
+            image-rendering: crisp-edges;
+        }
+
+        .sponsor-fallback {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: #fddc4b;
+            border: 4px solid #0f0f0f;
+            padding: 1.2rem 1rem;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            text-align: center;
+            width: 100%;
+            word-break: break-word;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .sponsor-fallback span {
+            display: inline-block;
+            background: #0f0f0f;
+            color: #fefdfa;
+            padding: 0.2rem 0.8rem;
+            margin: 0.1rem;
+        }
+
+        .sponsor-block .stamp-small {
+            margin-top: 0.4rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #d4e8ff;
+            border: 2px solid #0f0f0f;
+            padding: 0.1rem 0.8rem;
+            display: inline-block;
+            box-shadow: 3px 3px 0 #0f0f0f;
+            letter-spacing: 0.5px;
+            align-self: flex-start;
+        }
+
+        /* ===== FORM & BUTTON ===== */
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            padding: 0.5rem 0;
+        }
+
+        #kernel-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: #f1ede4;
+            padding: 0.4rem 0.8rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 4px 4px 0 #0f0f0f;
+        }
+
+        #kernel-options input[type="radio"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 3px solid #0f0f0f;
+            background: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #kernel-options input[type="radio"]:checked {
+            background: #fddc4b;
+        }
+
+        #kernel-options input[type="radio"]:checked::after {
+            content: "●";
+            position: absolute;
+            top: -2px;
+            left: 1px;
+            font-size: 14px;
+            color: #0f0f0f;
+        }
+
+        #kernel-options label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0f0f0f;
+            cursor: pointer;
+            margin-right: 0.3rem;
+        }
+
+        .btn-container button {
+            background: #fddc4b;
+            border: 4px solid #0f0f0f;
+            padding: 0.5rem 1.8rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: #0f0f0f;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            cursor: pointer;
+            transition: all 0.05s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-container button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0 #0f0f0f;
+        }
+
+        .autoJb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1ede4;
+            padding: 0.3rem 0.8rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 4px 4px 0 #0f0f0f;
+        }
+
+        #autoJbLabel {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #0f0f0f;
+            cursor: pointer;
+        }
+
+        #autoJbInput {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0f0f0f;
+            background: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #autoJbInput:checked {
+            background: #fddc4b;
+        }
+
+        #autoJbInput:checked::after {
+            content: "✓";
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            font-size: 16px;
+            color: #0f0f0f;
+        }
+
+        /* ===== CONSOLE ===== */
+        .main-layout {
+            margin-top: 0.5rem;
+        }
+
+        #console {
+            background: #0f0f0f;
+            color: #fefdfa;
+            padding: 1rem 1.2rem;
+            border: 4px solid #0f0f0f;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            min-height: 100px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* ===== STAMP ===== */
+        .stamp {
+            display: inline-block;
+            background: #fddc4b;
+            border: 3px solid #0f0f0f;
+            padding: 0.2rem 0.8rem;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            transform: rotate(2deg);
+            margin-top: 1rem;
+            box-shadow: 3px 3px 0 #0f0f0f;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: -4px;
+            bottom: -4px;
+            background: transparent;
+            border: 2px solid #0f0f0f;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem 1rem 1.8rem;
+                box-shadow: 8px 8px 0 #0f0f0f;
+            }
+            .card h1 {
+                font-size: 1.6rem;
+                box-shadow: 4px 4px 0 #0f0f0f;
+            }
+            .btn-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #kernel-options {
+                justify-content: center;
+            }
+            .btn-container button {
+                width: 100%;
+                text-align: center;
+            }
+            .autoJb {
+                justify-content: center;
+            }
+            .sponsor-img {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <h1>CSSFontFace UAF Exploit</h1>
-  <h3 id="UA">Running on:</h3>
+    <div class="card">
+        <h1>▸ PS4 JB</h1>
+        <h3 id="UA">⚡ Running on: <span id="ua-display">—</span></h3>
 
-  <hr>
+        <hr>
 
-  <div class="btn-container">
-    <form id="kernel-options">
-      <input type="radio" name="kernel" id="netctrl-exploit" value="netctrl">
-      <label for="netctrl-exploit">NetCtrl</label>
-      <input type="radio" name="kernel" id="lapse-exploit" value="lapse">
-      <label for="lapse-exploit">Lapse</label>
-    </form>
-    <button id="jeilbrek">Jailbreak</button>
-    <div class="autoJb">
-      <label for="autoJbInput" id="autoJbLabel">Auto Jailbreak</label>
-      <input class="mt-2" id="autoJbInput" type="checkbox">
+        <!-- ===== SPONSOR — FOTO DARI GITHUB ===== -->
+        <div class="sponsor-block">
+            <div class="sponsor-label">⏣ hubungi kami</div>
+            <div class="sponsor-content">
+                <img 
+                    class="sponsor-img" 
+                    src="https://raw.githubusercontent.com/Fathur2004/DreamsPS/main/image/browser.png"
+                    alt="DREAMS PLAYSTATION OXOX□□△ 08966898466!"
+                    title="DREAMS · PLAYSTATION · OXOX□□△ · 08966898466!"
+                    onerror="this.style.display='none'; document.getElementById('fallback-sponsor').style.display='block';"
+                />
+                <div class="sponsor-fallback" id="fallback-sponsor" style="display: none;">
+                    <span>DREAMS</span> ⏣ <span>PLAYSTATION</span> ⏣ <span>OXOX□□△</span> ⏣ <span>08966898466!</span>
+                </div>
+                <span class="stamp-small">⬡ Dreams Playstation</span>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <form id="kernel-options">
+                <input type="radio" name="kernel" id="netctrl-exploit" value="netctrl" checked>
+                <label for="netctrl-exploit">NetCtrl</label>
+                <input type="radio" name="kernel" id="lapse-exploit" value="lapse">
+                <label for="lapse-exploit">Lapse</label>
+            </form>
+            <button id="jeilbrek">⏣ Jailbreak</button>
+            <div class="autoJb">
+                <label for="autoJbInput" id="autoJbLabel">Auto JB</label>
+                <input class="mt-2" id="autoJbInput" type="checkbox">
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <pre id="console">⚡ Caching offline files... 0%</pre>
+        </div>
+
+        <div class="stamp">⏣ brutalism</div>
     </div>
-  </div>
 
-  <div class="main-layout">
-    <pre id="console">Caching offline files... 0%</pre>
-  </div>
-<script>
-    var scriptsLoaded = false;
+    <script>
+        // ===== TAMPILKAN USER-AGENT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const uaDisplay = document.getElementById('ua-display');
+            if (uaDisplay) {
+                uaDisplay.textContent = navigator.userAgent;
+            }
+        });
 
-    function triggerScripts() {
-      if (scriptsLoaded) return;
-      scriptsLoaded = true;
+        // ===== SCRIPT LOADER =====
+        var scriptsLoaded = false;
 
-      var consoleLog = document.getElementById('console');
-      if (consoleLog) consoleLog.innerText += "\nLoading main.js & script.js...";
+        function triggerScripts() {
+            if (scriptsLoaded) return;
+            scriptsLoaded = true;
 
-      var s1 = document.createElement('script');
-      s1.src = 'src/main.js';
-      s1.onerror = function() {
-        if (consoleLog) consoleLog.innerText += "\n❌ Error: Gagal memuat src/main.js (Cek path/file)";
-      };
-      
-      s1.onload = function() {
-        var s2 = document.createElement('script');
-        s2.src = 'includes/script.js';
-        s2.onerror = function() {
-          if (consoleLog) consoleLog.innerText += "\n❌ Error: Gagal memuat includes/script.js (Cek path/file)";
-        };
-        document.body.appendChild(s2);
-      };
+            var consoleLog = document.getElementById('console');
+            if (consoleLog) consoleLog.innerText += "\n📂 Loading main.js & script.js...";
 
-      document.body.appendChild(s1);
-    }
+            var s1 = document.createElement('script');
+            s1.src = 'src/main.js';
+            s1.onerror = function() {
+                if (consoleLog) consoleLog.innerText += "\n❌ Error: Gagal memuat src/main.js (Cek path/file)";
+            };
 
-    if (window.applicationCache) {
-      var appCache = window.applicationCache;
-      var consoleLog = document.getElementById('console');
+            s1.onload = function() {
+                var s2 = document.createElement('script');
+                s2.src = 'includes/script.js';
+                s2.onerror = function() {
+                    if (consoleLog) consoleLog.innerText += "\n❌ Error: Gagal memuat includes/script.js (Cek path/file)";
+                };
+                document.body.appendChild(s2);
+            };
 
-      appCache.addEventListener('progress', function(e) {
-        if (e.lengthComputable && consoleLog) {
-          var percent = Math.round((e.loaded / e.total) * 100);
-          consoleLog.innerText = "Caching offline files... " + percent + "%";
+            document.body.appendChild(s1);
         }
-      }, false);
 
-      appCache.addEventListener('cached', function() {
-        if (consoleLog) consoleLog.innerText = "Offline cache complete (100%)!";
-        triggerScripts();
-      }, false);
+        // ===== APPLICATION CACHE =====
+        if (window.applicationCache) {
+            var appCache = window.applicationCache;
+            var consoleLog = document.getElementById('console');
 
-      appCache.addEventListener('noupdate', function() {
-        if (consoleLog) consoleLog.innerText = "Offline cache ready.";
-        triggerScripts();
-      }, false);
+            appCache.addEventListener('progress', function(e) {
+                if (e.lengthComputable && consoleLog) {
+                    var percent = Math.round((e.loaded / e.total) * 100);
+                    consoleLog.innerText = "⚡ Caching offline files... " + percent + "%";
+                }
+            }, false);
 
-      appCache.addEventListener('error', function() {
-        if (consoleLog) consoleLog.innerText = "Cache error/offline mode.";
-        triggerScripts();
-      }, false);
+            appCache.addEventListener('cached', function() {
+                if (consoleLog) consoleLog.innerText = "✅ Offline cache complete (100%)!";
+                triggerScripts();
+            }, false);
 
-      setTimeout(function() {
-        if (!scriptsLoaded) {
-          if (consoleLog) consoleLog.innerText += "\n[Timeout] ...";
-          triggerScripts();
+            appCache.addEventListener('noupdate', function() {
+                if (consoleLog) consoleLog.innerText = "✅ Offline cache ready.";
+                triggerScripts();
+            }, false);
+
+            appCache.addEventListener('error', function() {
+                if (consoleLog) consoleLog.innerText = "⚠️ Cache error / offline mode.";
+                triggerScripts();
+            }, false);
+
+            setTimeout(function() {
+                if (!scriptsLoaded) {
+                    if (consoleLog) consoleLog.innerText += "\n[Timeout] ...";
+                    triggerScripts();
+                }
+            }, 3000);
+
+        } else {
+            triggerScripts();
         }
-      }, 3000);
-
-    } else {
-      triggerScripts();
-    }
-  </script>
+    </script>
 </body>
 </html>
