@@ -3,97 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 FW · Neubrutalism</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            background: #f5f1e8;
+            font-family: 'Courier New', Courier, 'IBM Plex Mono', monospace;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            padding: 1.5rem;
             margin: 0;
-            background-color: #121212;
-            color: #ffffff;
         }
+
         .card {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
+            background: #fefdfa;
+            max-width: 580px;
+            width: 100%;
+            padding: 2.2rem 2rem 2rem;
+            border: 4px solid #0f0f0f;
+            box-shadow: 12px 12px 0 #0f0f0f;
+            border-radius: 0;
+            position: relative;
         }
+
+        .card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: #0f0f0f;
+            border-bottom: 4px solid #0f0f0f;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.8rem;
+            display: inline-block;
+            background: #fddc4b;
+            padding: 0.1rem 0.8rem 0.1rem 0.5rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            transform: rotate(-0.5deg);
+        }
+
         .status {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 1rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 1.2rem 0 1rem 0;
+            padding: 0.6rem 0.8rem;
+            border: 3px solid #0f0f0f;
+            background: #ffffff;
+            box-shadow: 5px 5px 0 #0f0f0f;
+            text-align: center;
+            line-height: 1.3;
+            word-break: break-word;
         }
-        .info { color: #0088ff; }
-        .error { color: #ff4d4d; }
+
+        .status.info {
+            color: #0f0f0f;
+            background: #d4e8ff;
+        }
+
+        .status.error {
+            color: #0f0f0f;
+            background: #ffb3b3;
+            border-color: #a10000;
+            box-shadow: 5px 5px 0 #a10000;
+        }
+
         .ua-box {
-            margin-top: 1.5rem;
-            font-size: 0.85rem;
-            color: #aaa;
-            word-break: break-all;
-            background: #111;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #333;
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            background: #f1ede4;
+            padding: 1rem 1.2rem;
+            border: 3px solid #0f0f0f;
+            box-shadow: 5px 5px 0 #0f0f0f;
             text-align: left;
+            word-break: break-word;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            border-radius: 0;
+        }
+
+        .ua-box strong {
+            display: inline-block;
+            background: #0f0f0f;
+            color: #fefdfa;
+            padding: 0.1rem 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            border: 2px solid #0f0f0f;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* ===== SPONSOR — BESAR, TEGAS, NEOBRUTAL ===== */
+        .sponsor-block {
+            margin-top: 2rem;
+            border: 4px solid #0f0f0f;
+            background: #fcf6e7;
+            box-shadow: 8px 8px 0 #0f0f0f;
+            padding: 1.5rem 1.2rem 1.2rem;
+        }
+
+        .sponsor-block .sponsor-label {
+            display: inline-block;
+            background: #0f0f0f;
+            color: #fefdfa;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.15rem 0.8rem;
+            border: 2px solid #0f0f0f;
+            margin-bottom: 0.8rem;
+            transform: rotate(-1deg);
+        }
+
+        .sponsor-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .sponsor-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border: 5px solid #0f0f0f;
+            box-shadow: 8px 8px 0 #0f0f0f;
+            display: block;
+            background: #ffffff;
+            padding: 0.3rem;
+            image-rendering: crisp-edges;
+        }
+
+        .sponsor-fallback {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: #fddc4b;
+            border: 4px solid #0f0f0f;
+            padding: 1rem 1.5rem;
+            box-shadow: 6px 6px 0 #0f0f0f;
+            text-align: center;
+            width: 100%;
+            word-break: break-word;
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+
+        .sponsor-fallback span {
+            display: inline-block;
+            background: #0f0f0f;
+            color: #fefdfa;
+            padding: 0 0.5rem;
+            margin: 0 0.1rem;
+        }
+
+        .sponsor-block .stamp-small {
+            margin-top: 0.6rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #d4e8ff;
+            border: 2px solid #0f0f0f;
+            padding: 0.15rem 0.8rem;
+            display: inline-block;
+            box-shadow: 3px 3px 0 #0f0f0f;
+            letter-spacing: 0.5px;
+            align-self: flex-start;
+        }
+
+        .stamp {
+            display: inline-block;
+            background: #fddc4b;
+            border: 3px solid #0f0f0f;
+            padding: 0.2rem 0.8rem;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            transform: rotate(2deg);
+            margin-top: 0.5rem;
+            box-shadow: 3px 3px 0 #0f0f0f;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem 1rem 1.8rem;
+                box-shadow: 8px 8px 0 #0f0f0f;
+            }
+            .card h1 {
+                font-size: 1.6rem;
+                box-shadow: 4px 4px 0 #0f0f0f;
+            }
+            .status {
+                font-size: 1.3rem;
+                padding: 0.5rem 0.5rem;
+            }
+            .sponsor-img {
+                max-width: 100%;
+            }
+            .sponsor-fallback {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: -4px;
+            bottom: -4px;
+            background: transparent;
+            border: 2px solid #0f0f0f;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div id="result" class="status info">Cek firmware...</div>
-        <div id="user-agent" class="ua-box"></div>
+        <h1>▸ PS4 FW</h1>
+
+        <div id="result" class="status info">⚡ cek firmware ...</div>
+
+        <div id="user-agent" class="ua-box">
+            <strong>📟 user-agent</strong>
+            <span id="ua-content">—</span>
+        </div>
+
+        <!-- ===== SPONSOR — FOTO DARI GITHUB ===== -->
+        <div class="sponsor-block">
+            <div class="sponsor-label">⏣ hubungi kami</div>
+            <div class="sponsor-content">
+
+                <!-- 
+                    ═══════════════════════════════════════════════
+                    RAW URL GITHUB ANDA — SUDAH PAKAI YANG BENAR
+                    ═══════════════════════════════════════════════
+                -->
+                <img 
+                    class="sponsor-img" 
+                    src="https://raw.githubusercontent.com/Fathur2004/DreamsPS/main/image/BROWSER.png"
+                    alt="DREAMS PLAYSTATION OXOX□□△ 08966898466!"
+                    title="DREAMS · PLAYSTATION · OXOX□□△ · 08966898466!"
+                    onerror="this.style.display='none'; document.getElementById('fallback-sponsor').style.display='block';"
+                />
+
+                <!-- FALLBACK teks jika gambar gagal load -->
+                <div class="sponsor-fallback" id="fallback-sponsor" style="display: none;">
+                    <span>DREAMS</span> ⏣ <span>PLAYSTATION</span> ⏣ <span>OXOX□□△</span> ⏣ <span>08966898466!</span>
+                </div>
+
+                <span class="stamp-small">⬡ Dreams Playstation</span>
+            </div>
+        </div>
+
+        <div class="stamp">⏣</div>
     </div>
 
     <script>
-        function processDevice() {
-            const userAgent = navigator.userAgent;
-            const resultElement = document.getElementById('result');
-            const uaElement = document.getElementById('user-agent');
+        (function() {
+            "use strict";
 
-            uaElement.innerHTML = "<strong>User-Agent Terdeteksi:</strong><br>" + userAgent;
+            const resultEl = document.getElementById('result');
+            const uaContent = document.getElementById('ua-content');
 
-            const isPS4 = /PlayStation 4|PS4/i.test(userAgent);
-
-            if (isPS4) {
-                const fwMatch = userAgent.match(/(?:PlayStation 4|PS4)[\s\/]+([\d\.]+)/i);
-
-                if (fwMatch && fwMatch[1]) {
-                    const firmware = parseFloat(fwMatch[1]);
-                    resultElement.innerText = `Terdeteksi PS4 (FW ${firmware.toFixed(2)})`;
-
-                    if (firmware >= 5.00 && firmware <= 9.60) {
-                        resultElement.innerText += "";
-                        setTimeout(() => {
-                            window.location.href = "505_960/index.html";
-                        }, 1000);
-                    } 
-                    else if (firmware >= 10.00 && firmware <= 11.02) {
-                        resultElement.innerText += "";
-                        setTimeout(() => {
-                            window.location.href = "1000_1102/index.html";
-                        }, 1000);
-                    } 
-                    else {
-                        resultElement.className = "status error";
-                        resultElement.innerText = `PS4 FW ${firmware.toFixed(2)} belum support, namun Anda bisa pakai BD-JB, beli di id.shp.ee/czwbVnLh`;
-                    }
-                } else {
-                    resultElement.className = "status error";
-                    resultElement.innerText = "Terdeteksi PS4, tetapi gagal membaca versi Firmware secara spesifik.";
+            function processDevice() {
+                const userAgent = navigator.userAgent;
+                if (uaContent) {
+                    uaContent.textContent = userAgent;
                 }
-            } else {
-                resultElement.className = "status error";
-                resultElement.innerText = "❌ Perangkat ini bukan PlayStation 4.";
-            }
-        }
 
-        window.onload = processDevice;
+                const isPS4 = /PlayStation 4|PS4/i.test(userAgent);
+                if (!isPS4) {
+                    resultEl.className = 'status error';
+                    resultEl.textContent = '✖ BUKAN PS4';
+                    return;
+                }
+
+                const fwMatch = userAgent.match(/(?:PlayStation 4|PS4)[\s\/]+([\d\.]+)/i);
+                if (!fwMatch || !fwMatch[1]) {
+                    resultEl.className = 'status error';
+                    resultEl.textContent = '⚠ PS4 · FW tidak terbaca';
+                    return;
+                }
+
+                const firmware = parseFloat(fwMatch[1]);
+                if (isNaN(firmware)) {
+                    resultEl.className = 'status error';
+                    resultEl.textContent = '⚠ PS4 · FW tidak valid';
+                    return;
+                }
+
+                const fwDisplay = firmware.toFixed(2);
+                resultEl.className = 'status info';
+                resultEl.textContent = `🎮 PS4 (FW ${fwDisplay})`;
+
+                if (firmware >= 5.00 && firmware <= 9.60) {
+                    setTimeout(() => { window.location.href = "505_960/index.html"; }, 1000);
+                } 
+                else if (firmware >= 10.00 && firmware <= 11.02) {
+                    setTimeout(() => { window.location.href = "1000_1102/index.html"; }, 1000);
+                } 
+                else {
+                    resultEl.className = 'status error';
+                    resultEl.textContent = `✖ FW ${fwDisplay} belum support · beli BD-JB di id.shp.ee/czwbVnLh`;
+                }
+            }
+
+            window.addEventListener('load', processDevice);
+        })();
     </script>
 
 </body>
